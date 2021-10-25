@@ -16,7 +16,7 @@ docker restart connect
 ```
 4 - Check in the control center that the plugin has been added
 
-5 - Add the connector as follow :
+5 - Add the connector as follow : (for JSON format values)
 ```
 curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json" -d '{
  "name": "simple-elasticsearch-connector",
@@ -25,7 +25,11 @@ curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json
    "connection.url": "http://10.0.0.175:9200",
    "tasks.max": "1",
    "topics": "simple.elasticsearch.data",
-   "type.name": "_doc"
+   "type.name": "_doc",
+   "value.converter": "org.apache.kafka.connect.json.JsonConverter", 
+   "value.converter.schemas.enable": "false",
+   "schema.ignore": "true",
+   "key.ignore": "true"
  }
 }'
 ```
