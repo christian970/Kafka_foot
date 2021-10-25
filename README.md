@@ -15,3 +15,17 @@ docker exec -it connect confluent-hub install confluentinc/kafka-connect-elastic
 docker restart connect
 ```
 4 - Check in the control center that the plugin has been added
+
+5 - Add the connector as follow :
+```
+curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json" -d '{
+ "name": "simple-elasticsearch-connector",
+ "config": {
+   "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+   "connection.url": "http://10.0.0.175:9200",
+   "tasks.max": "1",
+   "topics": "simple.elasticsearch.data",
+   "type.name": "_doc"
+ }
+}'
+```
