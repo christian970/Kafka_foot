@@ -33,3 +33,4 @@ curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json
  }
 }'
 ```
+6 - Check the connect container logs to see if the worker started properlly !
