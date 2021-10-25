@@ -4,7 +4,8 @@ This is a new project
 
 ## Add a connector to Kafka Connect
 
-1 - Add a volume to store plugin configs for connect in the docker-compse.yml
+1 - Add a volume to store plugin configs for connect in the docker-compose.yml
+
 2 - Add the connector within the container : 
 ```
 docker exec -it connect confluent-hub install confluentinc/kafka-connect-elasticsearch:5.4.0
