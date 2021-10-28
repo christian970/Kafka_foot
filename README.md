@@ -19,18 +19,27 @@ docker restart connect
 5 - Add the connector as follow : (for JSON format values)
 ```
 curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json" -d '{
- "name": "simple-elasticsearch-connector",
- "config": {
-   "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
-   "connection.url": "http://10.0.0.175:9200",
-   "tasks.max": "1",
-   "topics": "simple.elasticsearch.data",
-   "type.name": "_doc",
-   "value.converter": "org.apache.kafka.connect.json.JsonConverter", 
-   "value.converter.schemas.enable": "false",
-   "schema.ignore": "true",
-   "key.ignore": "true"
- }
+  "name": "simple-elasticsearch-connector",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "tasks.max": "1",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "transforms": "insertTS, TimestampConverter",
+    "topics": "test4",
+    "transforms.insertTS.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.insertTS.timestamp.field": "timestamp",
+    "transforms.TimestampConverter.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+    "transforms.TimestampConverter.target.type": "unix",
+    "transforms.TimestampConverter.field": "timestamp",
+    "transforms.TimestampConverter.format": "yyyy-MM-dd HH:mm:ss",
+    "connection.url": "http://10.0.0.175:9200",
+    "type.name": "_doc",
+    "key.ignore": "true",
+    "schema.ignore": "true",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false"
+  }
 }'
 ```
 6 - Check the connect container logs to see if the worker started properly !
