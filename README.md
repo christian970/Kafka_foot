@@ -8,7 +8,7 @@ This is a new project
 
 2 - Add the connector within the container : 
 ```
-docker exec -it connect confluent-hub install confluentinc/kafka-connect-elasticsearch:5.4.0
+docker exec -it connect confluent-hub install confluentinc/kafka-connect-elasticsearch:5.4.0 --no-prompt
 ```
 3 - Restart the connect container : 
 ```
