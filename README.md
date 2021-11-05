@@ -18,7 +18,8 @@ docker restart connect
 
 5 - Add the connector as follow : (for JSON format values)
 ```
-curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json" -d '
+{
   "name": "simple-elasticsearch-connector",
   "config": {
     "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
@@ -30,6 +31,8 @@ curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json
     "transforms.insertTS.type": "org.apache.kafka.connect.transforms.InsertField$Value",
     "transforms.insertTS.timestamp.field": "timestamp",
     "connection.url": "http://10.0.0.175:9200",
+    "connection.username": "elastic",
+    "connection.password": "elastic",
     "type.name": "_doc",
     "key.ignore": "true",
     "schema.ignore": "true",
