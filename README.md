@@ -27,7 +27,7 @@ curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json
     "key.converter": "org.apache.kafka.connect.json.JsonConverter",
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
     "transforms": "insertTS",
-    "topics": "all_matches2",
+    "topics": "all_matches1",
     "transforms.insertTS.type": "org.apache.kafka.connect.transforms.InsertField$Value",
     "transforms.insertTS.timestamp.field": "timestamp",
     "connection.url": "http://10.0.0.175:9200",
